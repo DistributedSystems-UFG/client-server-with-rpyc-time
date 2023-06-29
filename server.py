@@ -18,13 +18,13 @@ class DBList(rpyc.Service):
       else:
           return "Absent"
 
-  def exposed_sort(self, data):
-    DBLength = len(DBList)
+  def exposed_sort(self):
+    DBLength = len(self.value)
     for i in range(DBLength):
         swapped = False
         for j in range(0, DBLength-i-1):
-            if DBList[j] > DBList[j+1]:
-                DBList[j], DBList[j+1] = DBList[j+1], DBList[j]
+            if self.value[j] > self.value[j+1]:
+                self.value[j], self.value[j+1] = self.value[j+1], self.value[j]
                 swapped = True
         if (swapped == False):
             break

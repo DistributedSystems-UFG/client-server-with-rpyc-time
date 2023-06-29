@@ -12,8 +12,11 @@ class DBList(rpyc.Service):
   def exposed_value(self):
     return self.value
 
-def exposed_search(self, data):
-    return [item for item in self.value if item == data]
+  def exposed_search(self, data):
+      if data in self.value:
+          return "Present"
+      else:
+          return "Absent"
 
 def exposed_sort(self, data):
   DBLength = len(DBList)
